@@ -1,9 +1,14 @@
-FROM babim/alpinebase
+FROM alpine
 
 # install
-RUN apk add --no-cache alpine-sdk bash curl zlib-dev util-linux-dev libmnl-dev gcc make git autoconf automake pkgconfig python logrotate && \
-    apk add --no-cache nodejs ssmtp && \
-    git clone https://github.com/firehol/netdata.git --depth=1 && \
+RUN apk add --no-cache gcc make autoconf automake
+RUN apk add --no-cache g++
+RUN apk add --no-cache alpine-sdk bash 
+RUN apk add curl zlib-dev util-linux-dev 
+RUN apk add libmnl-dev git 
+RUN apk add pkgconfig python logrotate
+RUN apk add --no-cache nodejs ssmtp
+RUN git clone https://github.com/firehol/netdata.git --depth=1 && \
     cd netdata && \
     ./netdata-installer.sh --dont-wait --dont-start-it
 
